@@ -1,0 +1,24 @@
+<div class="teachLog">
+  <form #Attendance="ngForm" (ngSubmit)="getForm(Attendance)" class="teachForm" novalidate>
+
+    <div class="mb-3" *ngIf="id == '0'">
+        <label class="form-label">Date </label>
+        <input type="date" name="date" required #date = "ngModel" ngModel class="form-control pass">
+        <span *ngIf="date.invalid && date.touched" class="error">Enter valid Date</span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hours Worked: </label>
+      <input type="number" name="hoursWorked" required max="8" min="0" #hoursWorked = "ngModel" [(ngModel)] = "attendance.hoursWorked" class="form-control pass">
+      <span *ngIf="hoursWorked.invalid && hoursWorked.touched || hoursWorked.dirty && hoursWorked.invalid" class="error">Enter valid hours worked</span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Remarks</label>
+        <input type="text" name="remarks" #remarks = "ngModel" [(ngModel)] = "attendance.remarks" class="form-control pass">
+    </div>
+
+    <button type="submit" [disabled]="Attendance.invalid" class="btn btn-success btn-sm" style="margin-right: 0.5rem;">Submit</button>
+    <button type="reset" class="btn btn-warning btn-sm">Clear</button>
+  </form>
+</div>

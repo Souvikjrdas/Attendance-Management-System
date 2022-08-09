@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-6-sm">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="d-grid gap-2 d-md-block">
+            <button [routerLink]="['/admin']" class="btn btn-outline-secondary" type="button" style="border-width: 0px;border-radius: 0px;margin-left: -1.5rem;">HOME</button>
+            <button [routerLink]="['/admin/attendance']" class="btn btn-outline-info"  type="button" style="border-width: 0px;border-radius: 0px;margin-left: -1.5rem;">ATTENDANCE</button>
+            <button (click)="LogOut()" class="btn btn-outline-warning" type="button" style="border-width: 0px;border-radius: 0px;margin-left: 47rem;">LogOut</button>
+          </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2rem;">
+    <div class="col-12 col-6-sm" *ngIf="users != null ; else elseBlock">
+      <div class="tableDiv" style="margin-left: auto;margin-right:auto">
+        <table class="table table-dark table-striped table-hover  table-borderless caption-top" style="overflow-x: scroll;">
+          <caption style="text-align: center;font-size: larger;font-weight: bold;color: black;">EMPLOYEES</caption>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of users">
+              <td>{{item.firstName}}</td>
+              <td>{{item.lastName}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.role}}</td>
+              <td>
+                <button class="btn btn-sm pull-right" style="border: 0;" data-bs-target="#myModal" data-bs-toggle="modal">
+                  <i class="fa fa-info-circle" aria-hidden="true" style="color: white;" (click)="myDetails(item.id)"></i></button>
+              </td>
+            </tr>
+        </table>
+      </div>
+      <div class="modal fade" id="myModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+              aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel" style="text-align: center;">Employee Attendance</h4>
+              <button class="close" style="border-color: whitesmoke;" data-bs-dismiss="modal" (click) ="close()">&times;</button>
+            </div>
+            <div class="modal-body">
+              <app-employee-attendance *ngIf="show" [id]="id"></app-employee-attendance>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-info btn-sm" data-bs-dismiss="modal" (click) = "close()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      <div class="col-12 col-6-sm" style="text-align: center;">
+        <h1> <strong> No Employees!</strong></h1>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-6-sm" *ngIf="attendance != null ; else noAttendance">
+      <table class="table table-primary table-hover table-bordered caption-top" style="overflow-x: scroll;">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">EmployeeId</th>
+            <th scope="col">Date</th>
+            <th scope="col">Hours Worked</th>
+            <th scope="col">remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of attendance">
+            <td>{{item.employeeId}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.hoursWorked}}</td>
+            <td>{{item.remarks}}</td>
+          </tr>
+      </table>
+    </div>
+    <ng-template #noAttendance>
+      <div class="col-12 col-6-sm" style="text-align: center;">
+        <h4><strong>No Attendance record found for the employee!</strong></h4>
+      </div>
+    </ng-template>
+  </div>
+</div>

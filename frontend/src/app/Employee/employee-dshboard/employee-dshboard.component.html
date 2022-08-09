@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-8-md">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="d-grid gap-2 d-md-block">
+            <button [routerLink]="['/employee/attendance']" class="btn btn-outline-secondary" style="border-width: 0px;border-radius: 0px;margin-left: -0.5rem;">ATTENDANCE</button>
+            <button (click)="LogOut()" style="border-width: 0px;border-radius: 0px;margin-left: 52rem;" class="btn btn-outline-warning">LogOut</button>
+          </div>
+      </nav>
+    </div>
+  </div>
+  <app-my-shared-dashboard></app-my-shared-dashboard>
+</div>

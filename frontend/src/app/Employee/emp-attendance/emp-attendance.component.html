@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-6-md">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="d-grid gap-2 d-md-block">
+            <button [routerLink]="['/employee']" class="btn btn-outline-secondary" style="border-width: 0px;border-radius: 0px;margin-left: -0.5rem;">HOME</button>
+            <button (click)="LogOut()" style="border-width: 0px;border-radius: 0px;margin-left: 52rem;" class="btn btn-outline-warning">LogOut</button>
+          </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-12 col-6-sm" *ngIf="myAttendance != null ; else elseBlock">
+        <div class="tableDiv" style="margin-left: auto;margin-right:auto">
+          <table class="table table-success table-striped table-hover  table-bordered caption-top" style="overflow-x: scroll;">
+            <caption style="text-align: center;font-size: larger;font-weight: bold;color: black;">ATTENDANCE</caption>
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Hours Worked</th>
+                <th scope="col">Date</th>
+                <th scope="col">Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of myAttendance">
+                <td>{{item.employeeId}}</td>
+                <td>{{item.hoursWorked}}</td>
+                <td>{{item.date | date: 'dd/MM/YYYY'}}</td>
+                <td>{{item.remarks}}</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div class="col-12 col-6-sm">
+          <h1> <strong> Sorry! You haven't marked any attendance</strong></h1>
+        </div>
+      </ng-template>
+    </div>
+</div>
+
+

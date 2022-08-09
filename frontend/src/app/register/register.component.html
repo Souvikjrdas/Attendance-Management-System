@@ -1,0 +1,74 @@
+<!-- <a routerLink="" class="btn btn-info" style="margin-top:5px; margin-left: 1rem;">LogIn</a> -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10">
+      <h3 >REGISTER USER</h3>
+    </div>
+    <div class="col-2" style="text-align: left;">
+      <button routerLink="/login" class="btn btn-success btn-sm" style="margin-top: 1rem;">LogIn</button>
+    </div>
+  </div>
+</div>
+  <div *ngIf="alert" class="alert alert-danger alert-dismissible fade show" role="alert" style="max-height:10%;width:30%;text-align:center;margin-left:auto;margin-right:auto">
+    <div *ngFor="let item of arr">
+        <h6><strong>{{item}}</strong></h6>
+    </div>
+    <button (click)="buttonClose()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+<div class="teachLog">
+  <form #Register="ngForm" (ngSubmit)="getForm(Register)" class="teachForm" novalidate style="margin-top: 28rem;">
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" name="firstName" required maxlength="255" #firstname="ngModel" ngModel class="form-control pass">
+        <span *ngIf="firstname.invalid && firstname.touched" class="error">Enter valid name</span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Last Name</label>
+      <input type="text" name="lastName" required maxlength="255" #lastname="ngModel" ngModel class="form-control pass">
+      <span *ngIf="lastname.invalid && lastname.touched" class="error">Enter valid name</span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Role:</label>
+      <select name="role" required  #roleType = "ngModel" ngModel class="form-control pass">
+        <option disabled>Select Type</option>
+        <option value="TeamLead">TeamLead</option>
+        <option value="Developer">Developer</option>
+        <option value="Tester">Tester</option>
+        <option value="Manager">Manager</option>
+        <span *ngIf="roleType.invalid && roleType.touched" class="error">Please enter your role!</span>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email </label>
+      <input type="email" name="email" required pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" #email="ngModel" ngModel class="form-control pass">
+      <span *ngIf="email.invalid && email.touched" class="error">Enter valid email</span>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Enter Password : </label>
+      <input type="password" name="password" required #password="ngModel" ngModel class="form-control pass">
+      <span *ngIf="password.invalid && password.touched" class="error">Invalid Password </span>
+      <!-- <br>
+      <input type="checkbox" style="width: 30px;" onclick="myFunction()">Show Password
+      <br> -->
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Confirm Password : </label>
+        <input type="password" name="confirmpassword" required #cnfrmpassword="ngModel" ngModel class="form-control pass">
+        <!-- <span *ngIf="password.touched && cnfrmpassword.touched && cnfrmpassword.invalid" class="error">
+          Invalid Password
+        </span> -->
+        <span *ngIf="cnfrmpassword.touched && password.touched && cnfrmpassword.value != password.value " class="error">
+            Passwords do not match!
+        </span>
+      </div>
+    <button type="submit" [disabled]="Register.invalid || password.value !== cnfrmpassword.value" class="btn btn-primary btn-sm">Submit</button>
+    <button type="reset" class="btn btn-primary btn-sm">Clear</button>
+  </form>
+</div>
+
+

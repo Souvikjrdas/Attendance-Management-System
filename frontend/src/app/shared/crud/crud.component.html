@@ -1,0 +1,31 @@
+<div class="container-fluid" style="background-color: cornflowerblue;">
+  <button (click)="LogOut()" style="margin-right: auto; margin-top: 0.2rem;" class="btn btn-sm btn-success">LogOut</button>
+  <div class="row">
+
+    <div *ngIf="onlyCalendar" class="col-12 col-8-12"  style="margin-left: auto; margin-right: auto; max-width: 55%;  max-height: 40%;">
+      <full-calendar [options]="calendarOptions" style="height: min-content;max-width: 90%;"></full-calendar>
+      <!-- <button (click)="hideWeekends()">{{hide ? 'Show ' : 'Hide '}}Weekends</button> -->
+    </div>
+
+    <div *ngIf="!onlyCalendar" class="col-8 col-8-md"  style="margin-left: auto; margin-right: auto; max-width: 50%;  max-height: 40%;">
+      <full-calendar [options]="calendarOptions" style="height: min-content;max-width: 90%;"></full-calendar>
+    </div>
+    <div *ngIf="!onlyCalendar" class="col-4 col-4-md">
+      <div [style.display]="showModal ? 'block' : 'none'" style="max-height: 40%;width: 100%;margin-left: -2rem;">
+        <div style="border: 2px solid rgb(5, 114, 101);padding: 1rem;background-color:darkorange">
+          <div style="text-align: center;">
+            <span><h4 class="modal-title">{{modalTitle}}</h4></span>
+          </div>
+          <div class="modal-body" style="height: 100%;margin-top: 1rem;">
+            <app-my-modal [id]="id"  (myEvent) = "event($event)" ></app-my-modal>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal" (click)="close()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
